@@ -695,7 +695,7 @@ const NecromundaRacketApp = () => {
             <div className="btn-group">
               <button
                 onClick={assignRackets}
-                className={`px-4 py-2 rounded-md font-medium transition-colors inline-flex items-center gap-2 ${
+                className={`px-4 py-2 rounded-md font-medium transition-colors ${
                   validateInputs().isValid 
                     ? 'bg-red-600 hover:bg-red-700 text-white' 
                     : 'bg-gray-500 cursor-not-allowed text-gray-300'
@@ -703,7 +703,7 @@ const NecromundaRacketApp = () => {
                 disabled={!validateInputs().isValid}
                 title={!validateInputs().isValid ? validateInputs().error : 'Assign rackets to players'}
               >
-                <Shuffle className="w-4 h-4" />
+                <Shuffle className="w-4 h-4 mr-2 inline" />
                 Assign Rackets
               </button>
               {assignments.length > 0 && (
