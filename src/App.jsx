@@ -54,6 +54,7 @@ const NecromundaRacketApp = () => {
           return {
             player: assignment.player,
             name: assignment.name,
+            alignment: assignment.alignment || 'Outlaw', // Default for old URLs
             rackets: rackets
           };
         });
@@ -87,6 +88,16 @@ const NecromundaRacketApp = () => {
   const updateAssignedPlayerName = (playerIndex, newName) => {
     const newAssignments = [...assignments];
     newAssignments[playerIndex].name = newName.trim() || `Player ${playerIndex + 1}`;
+    setAssignments(newAssignments);
+    
+    // Update share URL
+    const effectiveNames = newAssignments.map(assignment => assignment.name);
+    generateShareUrl(newAssignments, newAssignments.length, parseInt(racketsPerPlayer), effectiveNames);
+  };
+
+  const updatePlayerAlignment = (playerIndex, alignment) => {
+    const newAssignments = [...assignments];
+    newAssignments[playerIndex].alignment = alignment;
     setAssignments(newAssignments);
     
     // Update share URL
@@ -163,6 +174,7 @@ const NecromundaRacketApp = () => {
     const newAssignments = [...assignments, {
       player: newPlayerNumber,
       name: newPlayerName,
+      alignment: 'Outlaw', // Default alignment
       rackets: playerRackets
     }];
     
@@ -238,6 +250,7 @@ const NecromundaRacketApp = () => {
       newAssignments.push({
         player: i + 1,
         name: effectiveNames[i],
+        alignment: 'Outlaw', // Default alignment
         rackets: playerRackets
       });
     }
@@ -254,6 +267,7 @@ const NecromundaRacketApp = () => {
         assignments: assignments.map(assignment => ({
           player: assignment.player,
           name: assignment.name,
+          alignment: assignment.alignment,
           racketIds: assignment.rackets.map(racket => racket.id) // Only store IDs, not full objects
         })),
         numPlayers: playerCount,
@@ -612,6 +626,29 @@ const NecromundaRacketApp = () => {
                       className="text-xl font-bold text-yellow-400 bg-transparent border-none outline-none hover:bg-gray-700 focus:bg-gray-700 rounded px-2 py-1 -ml-2 w-full"
                       placeholder={`Player ${assignment.player}`}
                     />
+                    {/* Alignment Selector */}
+                    <div className="flex gap-2 mt-2">
+                      <button
+                        onClick={() => updatePlayerAlignment(assignment.player - 1, 'Outlaw')}
+                        className={`px-3 py-1 text-xs rounded-full transition-colors ${
+                          assignment.alignment === 'Outlaw'
+                            ? 'bg-red-600 text-white'
+                            : 'bg-gray-600 text-gray-300 hover:bg-red-500'
+                        }`}
+                      >
+                        Outlaw
+                      </button>
+                      <button
+                        onClick={() => updatePlayerAlignment(assignment.player - 1, 'Law Abiding')}
+                        className={`px-3 py-1 text-xs rounded-full transition-colors ${
+                          assignment.alignment === 'Law Abiding'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-gray-600 text-gray-300 hover:bg-blue-500'
+                        }`}
+                      >
+                        Law Abiding
+                      </button>
+                    </div>
                   </div>
                   <div className="text-sm text-gray-400 ml-2">
                     {assignment.rackets.length} racket{assignment.rackets.length !== 1 ? 's' : ''}
