@@ -707,39 +707,42 @@ const NecromundaRacketApp = () => {
                 Assign Rackets
               </button>
             </div>
-              {assignments.length > 0 && (
-                <div className="btn-group">
-                  <button
-                    onClick={resetAssignments}
-                    className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition-colors inline-flex items-center gap-2 shadow-lg"
-                  >
-                    <RotateCcw className="w-4 h-4" />
-                    Reset
-                  </button>
-                  <button
-                    onClick={copyShareUrl}
-                    className={`px-4 py-2 rounded-md transition-colors inline-flex items-center gap-2 shadow-lg ${
-                      shareUrl 
-                        ? 'bg-blue-600 hover:bg-blue-700 text-white' 
-                        : 'bg-gray-500 text-gray-300 cursor-not-allowed'
-                    }`}
-                    disabled={!shareUrl}
-                    title={shareUrl ? "Copy shareable URL to clipboard" : "Share URL not ready"}
-                  >
-                    <Share2 className="w-4 h-4" />
-                    Share {shareUrl && '✓'}
-                  </button>
-                  <button
-                    onClick={exportResults}
-                    className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors inline-flex items-center gap-2 shadow-lg"
-                  >
-                    <Download className="w-4 h-4" />
-                    Export
-                  </button>
-                </div>
-              )}
-            </div>
           </div>
+          
+          {/* Action Buttons After Assignment */}
+          {assignments.length > 0 && (
+            <div className="border-t border-gray-600 pt-4 mt-4">
+              <div className="btn-group">
+                <button
+                  onClick={resetAssignments}
+                  className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition-colors inline-flex items-center gap-2"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  Reset
+                </button>
+                <button
+                  onClick={copyShareUrl}
+                  className={`px-4 py-2 rounded-md transition-colors inline-flex items-center gap-2 ${
+                    shareUrl 
+                      ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                      : 'bg-gray-500 text-gray-300 cursor-not-allowed'
+                  }`}
+                  disabled={!shareUrl}
+                  title={shareUrl ? "Copy shareable URL to clipboard" : "Share URL not ready"}
+                >
+                  <Share2 className="w-4 h-4" />
+                  Share {shareUrl && '✓'}
+                </button>
+                <button
+                  onClick={exportResults}
+                  className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors inline-flex items-center gap-2"
+                >
+                  <Download className="w-4 h-4" />
+                  Export
+                </button>
+              </div>
+            </div>
+          )}
           
           {/* Player Names Input */}
           {showNameInput && numPlayers && (
@@ -825,8 +828,6 @@ const NecromundaRacketApp = () => {
             </div>
           )}
         </div>
-
-
 
         {/* Assignments Results */}
         {assignments.length > 0 && (
