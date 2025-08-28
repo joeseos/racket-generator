@@ -315,6 +315,13 @@ const NecromundaRacketApp = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
+          <div className="flex justify-center mb-4">
+            <img 
+              src="/necromunda-icon.png" 
+              alt="Necromunda Logo" 
+              className="w-24 h-24 object-contain"
+            />
+          </div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent mb-2">
             Necromunda Racket Generator
           </h1>
