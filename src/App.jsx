@@ -314,18 +314,31 @@ const NecromundaRacketApp = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
+        <div className="relative mb-8">
+          {/* Logo positioned absolutely to the left */}
+          <div className="absolute left-0 top-1/2 transform -translate-y-1/2 hidden md:block">
             <img 
-              src="/necromunda-icon.png" 
+              src="/necromunda-logo-large.png" 
               alt="Necromunda Logo" 
               className="w-24 h-24 object-contain"
             />
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent mb-2">
-            Necromunda Racket Generator
-          </h1>
-          <p className="text-gray-300 text-lg">Randomly distribute rackets among your players</p>
+          
+          {/* Centered text content */}
+          <div className="text-center">
+            {/* Show logo on mobile above text */}
+            <div className="flex justify-center mb-4 md:hidden">
+              <img 
+                src="/necromunda-logo-large.png" 
+                alt="Necromunda Logo" 
+                className="w-20 h-20 object-contain"
+              />
+            </div>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent mb-2">
+              Necromunda Racket Generator
+            </h1>
+            <p className="text-gray-300 text-lg">Randomly distribute rackets among your players</p>
+          </div>
         </div>
 
         {/* Input Section */}
