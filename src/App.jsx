@@ -120,6 +120,46 @@ const NecromundaRacketApp = () => {
     );
   };
 
+  const addNewPlayer = () => {
+    const racketsCount = parseInt(racketsPerPlayer);
+    const newPlayerNumber = assignments.length + 1;
+    const newPlayerName = `Player ${newPlayerNumber}`;
+    
+    // Get all currently assigned rackets
+    const allAssignedRackets = assignments.flatMap(assignment => assignment.rackets);
+    
+    // Create available pool (exclude assigned rackets)
+    let availableRackets = RACKETS.filter(racket => 
+      !allAssignedRackets.some(assigned => assigned.id === racket.id)
+    );
+    
+    // If not enough available rackets, refresh the pool as needed
+    let playerRackets = [];
+    for (let i = 0; i < racketsCount; i++) {
+      if (availableRackets.length === 0) {
+        availableRackets = [...RACKETS];
+        // Remove already selected rackets for this player to avoid duplicates
+        availableRackets = availableRackets.filter(racket => 
+          !playerRackets.some(selected => selected.id === racket.id)
+        );
+      }
+      
+      const randomIndex = Math.floor(Math.random() * availableRackets.length);
+      const selectedRacket = availableRackets.splice(randomIndex, 1)[0];
+      playerRackets.push(selectedRacket);
+    }
+    
+    // Add new player to assignments
+    const newAssignments = [...assignments, {
+      player: newPlayerNumber,
+      name: newPlayerName,
+      rackets: playerRackets
+    }];
+    
+    setAssignments(newAssignments);
+    generateShareUrl(newAssignments, newPlayerNumber, parseInt(racketsPerPlayer), [...getEffectivePlayerNames(), newPlayerName]);
+  };
+
   const redrawSingleRacket = (playerIndex, racketIndex) => {
     // Get all currently assigned rackets to avoid duplicates
     const allAssignedRackets = assignments.flatMap(assignment => assignment.rackets);
@@ -407,6 +447,14 @@ const NecromundaRacketApp = () => {
           {assignments.length > 0 && (
             <div className="border-t border-gray-600 pt-4 mt-4">
               <div className="btn-group">
+                <button
+                  onClick={addNewPlayer}
+                  className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-md transition-colors inline-flex items-center gap-2"
+                  title="Add another player with assigned rackets"
+                >
+                  <Users className="w-4 h-4" />
+                  Add Player
+                </button>
                 <button
                   onClick={resetAssignments}
                   className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition-colors inline-flex items-center gap-2"
