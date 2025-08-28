@@ -559,7 +559,7 @@ const NecromundaRacketApp = () => {
           )}
           
           {/* Info Display */}
-          {(numPlayers && racketsPerPlayer) || assignments.length > 0 && (
+          {((numPlayers && racketsPerPlayer) || assignments.length > 0) && (
             <div className="border-t border-gray-600 pt-4 mt-4">
               <div className="flex flex-wrap gap-4 text-sm text-gray-300">
                 {(() => {
