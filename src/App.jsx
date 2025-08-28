@@ -695,9 +695,9 @@ const NecromundaRacketApp = () => {
             <div className="btn-group">
               <button
                 onClick={assignRackets}
-                className={`px-6 py-2 rounded-md font-medium transition-colors inline-flex items-center gap-2 ${
+                className={`px-4 py-2 rounded-md font-medium transition-colors inline-flex items-center gap-2 ${
                   validateInputs().isValid 
-                    ? 'bg-red-600 hover:bg-red-700 text-white shadow-lg' 
+                    ? 'bg-red-600 hover:bg-red-700 text-white' 
                     : 'bg-gray-500 cursor-not-allowed text-gray-300'
                 }`}
                 disabled={!validateInputs().isValid}
