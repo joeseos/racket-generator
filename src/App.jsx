@@ -388,6 +388,11 @@ const NecromundaRacketApp = () => {
         setNumPlayers(decodedData.numPlayers?.toString() || '');
         setRacketsPerPlayer(decodedData.racketsPerPlayer?.toString() || '2');
         setPlayerNames(decodedData.playerNames || []);
+        
+        // Generate share URL for loaded data
+        const baseUrl = window.location.href.split('?')[0];
+        const newShareUrl = `${baseUrl}?data=${encodedData}`;
+        setShareUrl(newShareUrl);
       } catch (error) {
         console.error('Failed to load shared results:', error);
       }
@@ -497,14 +502,17 @@ const NecromundaRacketApp = () => {
       };
       
       const encodedData = btoa(JSON.stringify(shareData));
-      const baseUrl = window.location.origin + window.location.pathname;
+      // Fix for Netlify deployment - use window.location.href instead of constructing URL
+      const baseUrl = window.location.href.split('?')[0];
       const newShareUrl = `${baseUrl}?data=${encodedData}`;
       
-      console.log('Generated share URL:', newShareUrl); // Debug log
+      console.log('Generated share URL:', newShareUrl);
       setShareUrl(newShareUrl);
       
       // Update browser URL without page reload
-      window.history.pushState({}, '', newShareUrl);
+      if (window.history && window.history.pushState) {
+        window.history.pushState({}, '', newShareUrl);
+      }
     } catch (error) {
       console.error('Failed to generate share URL:', error);
       alert('Failed to generate share URL. Please try again.');
@@ -559,7 +567,9 @@ const NecromundaRacketApp = () => {
     setShareUrl('');
     
     // Clear URL parameters
-    window.history.pushState({}, '', window.location.pathname);
+    if (window.history && window.history.pushState) {
+      window.history.pushState({}, '', window.location.pathname);
+    }
   };
 
   const exportResults = () => {
@@ -641,19 +651,19 @@ const NecromundaRacketApp = () => {
             <div className="flex items-end">
               <button
                 onClick={() => setShowNameInput(!showNameInput)}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md font-medium transition-colors"
+                className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium transition-colors"
                 disabled={!numPlayers}
               >
                 {showNameInput ? 'Hide Names' : 'Set Names'}
               </button>
             </div>
             
-            <div className="flex items-end gap-2">
+            <div className="btn-group">
               <button
                 onClick={assignRackets}
-                className={`px-6 py-2 rounded-md font-medium flex items-center gap-2 transition-colors ${
+                className={`px-6 py-2 rounded-md font-medium transition-colors inline-flex items-center gap-2 ${
                   validateInputs().isValid 
-                    ? 'bg-red-600 hover:bg-red-700 text-white' 
+                    ? 'bg-red-600 hover:bg-red-700 text-white shadow-lg' 
                     : 'bg-gray-500 cursor-not-allowed text-gray-300'
                 }`}
                 disabled={!validateInputs().isValid}
@@ -666,14 +676,14 @@ const NecromundaRacketApp = () => {
                 <>
                   <button
                     onClick={resetAssignments}
-                    className="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-md flex items-center gap-2 transition-colors"
+                    className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition-colors inline-flex items-center gap-2 shadow-lg"
                   >
                     <RotateCcw className="w-4 h-4" />
                     Reset
                   </button>
                   <button
                     onClick={copyShareUrl}
-                    className={`px-4 py-2 rounded-md flex items-center gap-2 transition-colors ${
+                    className={`px-4 py-2 rounded-md transition-colors inline-flex items-center gap-2 shadow-lg ${
                       shareUrl 
                         ? 'bg-blue-600 hover:bg-blue-700 text-white' 
                         : 'bg-gray-500 text-gray-300 cursor-not-allowed'
@@ -686,7 +696,7 @@ const NecromundaRacketApp = () => {
                   </button>
                   <button
                     onClick={exportResults}
-                    className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md flex items-center gap-2 transition-colors"
+                    className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors inline-flex items-center gap-2 shadow-lg"
                   >
                     <Download className="w-4 h-4" />
                     Export
@@ -798,7 +808,7 @@ const NecromundaRacketApp = () => {
               />
               <button
                 onClick={copyShareUrl}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md flex items-center gap-2 transition-colors"
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors inline-flex items-center gap-2"
               >
                 <Copy className="w-4 h-4" />
                 Copy
