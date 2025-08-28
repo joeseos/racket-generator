@@ -825,31 +825,7 @@ const NecromundaRacketApp = () => {
           )}
         </div>
 
-        {/* Share URL Section */}
-        {shareUrl && (
-          <div className="bg-blue-900 bg-opacity-50 border border-blue-600 rounded-lg p-4 mb-8">
-            <div className="flex items-center gap-2 mb-2">
-              <Share2 className="w-5 h-5 text-blue-400" />
-              <h3 className="text-lg font-medium text-blue-300">Shareable Results</h3>
-            </div>
-            <p className="text-sm text-blue-200 mb-3">Share this URL with your players so they can view the racket assignments:</p>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={shareUrl}
-                readOnly
-                className="flex-1 px-3 py-2 bg-blue-800 bg-opacity-50 border border-blue-600 rounded-md text-blue-100 text-sm"
-              />
-              <button
-                onClick={copyShareUrl}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors inline-flex items-center gap-2"
-              >
-                <Copy className="w-4 h-4" />
-                Copy
-              </button>
-            </div>
-          </div>
-        )}
+
 
         {/* Assignments Results */}
         {assignments.length > 0 && (
