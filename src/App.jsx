@@ -84,6 +84,16 @@ const NecromundaRacketApp = () => {
     setPlayerNames(newNames);
   };
 
+  const updateAssignedPlayerName = (playerIndex, newName) => {
+    const newAssignments = [...assignments];
+    newAssignments[playerIndex].name = newName.trim() || `Player ${playerIndex + 1}`;
+    setAssignments(newAssignments);
+    
+    // Update share URL
+    const effectiveNames = newAssignments.map(assignment => assignment.name);
+    generateShareUrl(newAssignments, newAssignments.length, parseInt(racketsPerPlayer), effectiveNames);
+  };
+
   const updatePlayerName = (index, name) => {
     const updatedNames = [...playerNames];
     updatedNames[index] = name.trim();
@@ -549,22 +559,39 @@ const NecromundaRacketApp = () => {
           )}
           
           {/* Info Display */}
-          {numPlayers && racketsPerPlayer && (
+          {(numPlayers && racketsPerPlayer) || assignments.length > 0 && (
             <div className="border-t border-gray-600 pt-4 mt-4">
               <div className="flex flex-wrap gap-4 text-sm text-gray-300">
                 {(() => {
-                  const totalNeeded = parseInt(numPlayers || 0) * parseInt(racketsPerPlayer || 0);
-                  const poolRefreshes = Math.floor(totalNeeded / 26);
-                  const usedInCurrentPool = totalNeeded % 26;
-                  const remaining = usedInCurrentPool === 0 && totalNeeded > 0 ? 0 : 26 - usedInCurrentPool;
-                  
-                  return (
-                    <>
-                      <span>Total Rackets Needed: <span className="text-yellow-400">{totalNeeded}</span></span>
-                      <span>Pool Refreshes: <span className="text-green-400">{poolRefreshes}</span> times</span>
-                      <span>Remaining: <span className="text-blue-400">{remaining}</span> rackets</span>
-                    </>
-                  );
+                  if (assignments.length > 0) {
+                    // Calculate based on actual assignments (more accurate for added players)
+                    const totalAssigned = assignments.reduce((total, player) => total + player.rackets.length, 0);
+                    const poolRefreshes = Math.floor(totalAssigned / 26);
+                    const usedInCurrentCycle = totalAssigned % 26;
+                    const remaining = usedInCurrentCycle === 0 && totalAssigned > 0 ? 0 : 26 - usedInCurrentCycle;
+                    
+                    return (
+                      <>
+                        <span>Total Assigned: <span className="text-yellow-400">{totalAssigned}</span> rackets</span>
+                        <span>Pool Refreshes: <span className="text-green-400">{poolRefreshes}</span> times</span>
+                        <span>Remaining: <span className="text-blue-400">{remaining}</span> rackets</span>
+                      </>
+                    );
+                  } else {
+                    // Calculate based on planned assignments (before assignment)
+                    const totalNeeded = parseInt(numPlayers || 0) * parseInt(racketsPerPlayer || 0);
+                    const poolRefreshes = Math.floor(totalNeeded / 26);
+                    const usedInCurrentPool = totalNeeded % 26;
+                    const remaining = usedInCurrentPool === 0 && totalNeeded > 0 ? 0 : 26 - usedInCurrentPool;
+                    
+                    return (
+                      <>
+                        <span>Total Rackets Needed: <span className="text-yellow-400">{totalNeeded}</span></span>
+                        <span>Pool Refreshes: <span className="text-green-400">{poolRefreshes}</span> times</span>
+                        <span>Remaining: <span className="text-blue-400">{remaining}</span> rackets</span>
+                      </>
+                    );
+                  }
                 })()}
               </div>
             </div>
@@ -577,10 +604,16 @@ const NecromundaRacketApp = () => {
             {assignments.map((assignment) => (
               <div key={assignment.player} className="bg-gray-800 rounded-lg p-6 border border-gray-700">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-yellow-400">
-                    {assignment.name}
-                  </h3>
-                  <div className="text-sm text-gray-400">
+                  <div className="flex-1">
+                    <input
+                      type="text"
+                      value={assignment.name}
+                      onChange={(e) => updateAssignedPlayerName(assignment.player - 1, e.target.value)}
+                      className="text-xl font-bold text-yellow-400 bg-transparent border-none outline-none hover:bg-gray-700 focus:bg-gray-700 rounded px-2 py-1 -ml-2 w-full"
+                      placeholder={`Player ${assignment.player}`}
+                    />
+                  </div>
+                  <div className="text-sm text-gray-400 ml-2">
                     {assignment.rackets.length} racket{assignment.rackets.length !== 1 ? 's' : ''}
                   </div>
                 </div>
