@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shuffle, Users, Download, RotateCcw, Info, Share2, Copy } from 'lucide-react';
+import { Shuffle, Users, Download, RotateCcw, Info, Share2, Copy, RefreshCw } from 'lucide-react';
 import { RACKETS } from './data/rackets.js';
 
 // Unicode-safe encoding/decoding functions
@@ -118,6 +118,44 @@ const NecromundaRacketApp = () => {
     return playerNames.map((name, index) => 
       name && name.trim() !== '' ? name.trim() : `Player ${index + 1}`
     );
+  };
+
+  const redrawSingleRacket = (playerIndex, racketIndex) => {
+    // Get all currently assigned rackets to avoid duplicates
+    const allAssignedRackets = assignments.flatMap(assignment => assignment.rackets);
+    const currentRacket = assignments[playerIndex].rackets[racketIndex];
+    
+    // Remove current racket from assigned list for pool calculation
+    const otherAssignedRackets = allAssignedRackets.filter(racket => racket.id !== currentRacket.id);
+    
+    // Create available pool (exclude other assigned rackets)
+    let availableRackets = RACKETS.filter(racket => 
+      !otherAssignedRackets.some(assigned => assigned.id === racket.id)
+    );
+    
+    // If no available rackets (shouldn't happen with 26 rackets), reset pool
+    if (availableRackets.length === 0) {
+      availableRackets = [...RACKETS];
+    }
+    
+    // Remove current racket from available pool to ensure we get a different one
+    availableRackets = availableRackets.filter(racket => racket.id !== currentRacket.id);
+    
+    // If still no available rackets, allow the same racket (edge case)
+    if (availableRackets.length === 0) {
+      availableRackets = [currentRacket];
+    }
+    
+    // Select random racket from available pool
+    const randomIndex = Math.floor(Math.random() * availableRackets.length);
+    const newRacket = availableRackets[randomIndex];
+    
+    // Update assignments
+    const newAssignments = [...assignments];
+    newAssignments[playerIndex].rackets[racketIndex] = newRacket;
+    
+    setAssignments(newAssignments);
+    generateShareUrl(newAssignments, parseInt(numPlayers), parseInt(racketsPerPlayer), getEffectivePlayerNames());
   };
 
   const assignRackets = () => {
@@ -482,21 +520,45 @@ const NecromundaRacketApp = () => {
                   {assignment.rackets.map((racket, idx) => (
                     <div 
                       key={`${racket.id}-${idx}`} 
-                      className="bg-gray-700 rounded-lg p-4 border-l-4 border-red-500 hover:bg-gray-600 transition-colors cursor-pointer"
-                      onClick={() => {
-                        setSelectedRacket(racket);
-                        setShowDetails(true);
-                      }}
+                      className="bg-gray-700 rounded-lg p-4 border-l-4 border-red-500 hover:bg-gray-600 transition-colors group relative"
                     >
                       <div className="flex items-start justify-between">
-                        <div className="flex-1">
+                        <div 
+                          className="flex-1 cursor-pointer"
+                          onClick={() => {
+                            setSelectedRacket(racket);
+                            setShowDetails(true);
+                          }}
+                        >
                           <div className={`text-sm font-medium ${getSuitColor(racket.card)} mb-1`}>
                             {getSuitIcon(racket.card)} {racket.card}
                           </div>
                           <h4 className="font-bold text-white text-sm mb-2">{racket.title}</h4>
                           <p className="text-xs text-gray-300 line-clamp-2">{racket.description}</p>
                         </div>
-                        <Info className="w-4 h-4 text-gray-400 ml-2 flex-shrink-0" />
+                        <div className="flex items-center gap-1 ml-2">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              redrawSingleRacket(assignment.player - 1, idx);
+                            }}
+                            className="p-1 rounded hover:bg-gray-500 text-gray-400 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+                            title="Re-draw this racket"
+                          >
+                            <RefreshCw className="w-3 h-3" />
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedRacket(racket);
+                              setShowDetails(true);
+                            }}
+                            className="p-1 text-gray-400 hover:text-white transition-colors"
+                            title="View details"
+                          >
+                            <Info className="w-4 h-4" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}
