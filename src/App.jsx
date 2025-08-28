@@ -952,6 +952,23 @@ const NecromundaRacketApp = () => {
             </p>
           )}
         </div>
+
+        {/* Buy Me a Coffee - Bottom of Page */}
+        <div className="mt-8 text-center">
+          <p className="text-xs text-gray-500 mb-3">Enjoying this tool? Consider supporting its development:</p>
+          <a 
+            href="https://buymeacoffee.com/mundamanager" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-block hover:opacity-80 transition-opacity"
+          >
+            <img 
+              src="https://cdn.buymeacoffee.com/buttons/v2/default-orange.png" 
+              alt="Buy Me A Coffee" 
+              className="h-12 w-auto"
+            />
+          </a>
+        </div>
       </div>
     </div>
   );
