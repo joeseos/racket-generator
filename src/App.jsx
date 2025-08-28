@@ -21,7 +21,7 @@ const RACKETS = [
     id: 'two_hearts',
     card: 'Two of Hearts',
     title: 'OUT-HIVE SMUGGLING ROUTES',
-    description: 'Everything that passes in and out of the hive is checked, authorised and stamped by official process… except when it isn\'t!',
+    description: 'Everything that passes in and out of the hive is checked, authorised and stamped by official process... except when it is not!',
     linkedRackets: ['Ghast Prospecting', 'The Cold Trade'],
     racketBoons: {
       income: 'The gang earns D6x10 credits when they collect Income.'
@@ -131,7 +131,7 @@ const RACKETS = [
     id: 'ten_hearts',
     card: 'Ten of Hearts',
     title: 'PROMETHIUM GUILD BOND',
-    description: 'Those in service to the Promethium Guild can expect a \'warm\' reception should they fail to execute their duty.',
+    description: 'Those in service to the Promethium Guild can expect a warm reception should they fail to execute their duty.',
     linkedRackets: [],
     racketBoons: {
       special1: 'Whilst it controls this Racket, the gang can control no other Guild Bond Racket.',
@@ -167,7 +167,7 @@ const RACKETS = [
     id: 'king_hearts',
     card: 'King of Hearts',
     title: 'ARCHAEOTECH AUCTIONING',
-    description: 'Archaeotech is the buried treasure of past ages of Necromunda, and those who buy and sell it can reap fortunes – or lose everything.',
+    description: 'Archaeotech is the buried treasure of past ages of Necromunda, and those who buy and sell it can reap fortunes - or lose everything.',
     linkedRackets: ['Proxies of the Omnissiah', 'The Cold Trade'],
     racketBoons: {
       equipment: 'Whilst it controls this Racket, one member of the gang may have a single item from the Imperial Weapons section of the Black Market for free.',
@@ -213,7 +213,7 @@ const RACKETS = [
     id: 'three_clubs',
     card: 'Three of Clubs',
     title: 'PROXIES OF THE OMNISSIAH',
-    description: 'The Tech-Priests of the Machine God watch the industrial enclaves of Necromunda with a careful eye – not only does its hives produce many sacred machines, but secrets of lost technological lore lie buried in their depths.',
+    description: 'The Tech-Priests of the Machine God watch the industrial enclaves of Necromunda with a careful eye - not only does its hives produce many sacred machines, but secrets of lost technological lore lie buried in their depths.',
     linkedRackets: ['Archaeotech Auctioning', 'Promethium Guild Bond'],
     racketBoons: {
       special: 'Whilst it controls this Racket, all fighters in the gang may re-roll any failed Ammo checks. Additionally, the gang treats all Bionics as Common.'
@@ -227,13 +227,13 @@ const RACKETS = [
     id: 'four_clubs',
     card: 'Four of Clubs',
     title: 'GAMBLING EMPIRE',
-    description: 'Fortunes are won and lost on the spin of a wheel or the turning of a card but, no matter who loses and who gains, the house always wins…',
+    description: 'Fortunes are won and lost on the spin of a wheel or the turning of a card but, no matter who loses and who gains, the house always wins...',
     linkedRackets: ['Blood Pits', 'Whisper Brokers'],
     racketBoons: {
       special: 'The player of the gang that controls this Racket chooses a suit of cards and then draws a card from a shuffled deck of playing cards. If they draw a card from the suit they chose, they earn income equal to the value of the card (Jack 11, Queen 12, King 13) x 10 credits. If they draw a card from a suit of the same colour, they earn income equal to the value of the card x 5 credits. If it is any other suit, they gain no income.'
     },
     enhancedBoons: {
-      income1: 'If the gang also controls one of the Linked Rackets, the gang\'s player may nominate a single enemy fighter (but not a Leader or Champion) at the start of the battle. The gang has called in the fighter\'s debts. The nominated fighter misses the battle.'
+      income1: 'If the gang also controls one of the Linked Rackets, the gang player may nominate a single enemy fighter (but not a Leader or Champion) at the start of the battle. The gang has called in the fighter debts. The nominated fighter misses the battle.'
     }
   },
   {
@@ -260,15 +260,15 @@ const RACKETS = [
       income: 'Whilst it controls this Racket, the gang gains 2D6x10 credits when they collect Income if they won their battle.'
     },
     enhancedBoons: {
-      equipment: 'If the gang also controls one of the Linked Rackets, all of the gang\'s Leader and Champions may each have one of the following Extravagant Goods for free: Gold-plated Gun, Exotic Furs, Opulent Jewellery, Uphive Raiments.',
-      income2: 'If the gang also controls both of the Linked Rackets, the gang\'s Leader gains a Caryatid Exotic Beast for free. This Caryatid will not leave its master if the gang loses Reputation, but will leave if the gang loses control of this Racket.'
+      equipment: 'If the gang also controls one of the Linked Rackets, all of the gang Leader and Champions may each have one of the following Extravagant Goods for free: Gold-plated Gun, Exotic Furs, Opulent Jewellery, Uphive Raiments.',
+      income2: 'If the gang also controls both of the Linked Rackets, the gang Leader gains a Caryatid Exotic Beast for free. This Caryatid will not leave its master if the gang loses Reputation, but will leave if the gang loses control of this Racket.'
     }
   },
   {
     id: 'seven_clubs',
     card: 'Seven of Clubs',
     title: 'BULLET CUTTING',
-    description: 'Bullets, guns and blades are the eternal trade of Necromunda – everyone needs a gun or a blade.',
+    description: 'Bullets, guns and blades are the eternal trade of Necromunda - everyone needs a gun or a blade.',
     linkedRackets: ['Proxies of the Omnissiah', 'Blood Pits'],
     racketBoons: {
       special: 'Whilst it controls this Racket, all fighters in the gang may re-roll any failed Ammo checks.',
@@ -286,7 +286,7 @@ const RACKETS = [
     description: 'Settlements in the underhive vanish all the time. Those who want to survive pay gangs a handsome price to keep others away and their hard-won lives free of the misfortune that comes to those who refuse to pay.',
     linkedRackets: ['Guild Bond (any)', 'Bullet Cutting'],
     racketBoons: {
-      recruit: 'Whilst it controls this Racket, the gang gains one Hanger-on of the controlling player\'s choice for free.',
+      recruit: 'Whilst it controls this Racket, the gang gains one Hanger-on of the controlling player choice for free.',
       income: 'Whilst it controls this Racket, the gang gains D6x10 credits when they collect Income.'
     },
     enhancedBoons: {
@@ -347,7 +347,7 @@ const RACKETS = [
     },
     enhancedBoons: {
       income1: 'If the gang also controls one of the Linked Rackets, the gang gains 2D6x10 credits when they collect Income.',
-      special: 'Whilst this gang controls both of the linked Rackets, any gang in the campaign may pay this gang to return a dead fighter from the grave. This costs the original value of the fighter (including equipment) +100 credits. Roll 2D6. On a roll of 7-12 the fighter is resurrected and gains the Fearsome skill. On a roll of 3-6 the fighter is resurrected but suffers a permanent loss of 1 Toughness and gains the Fearsome skill if they don\'t have it already. On a roll of 2, the resurrection fails.'
+      special: 'Whilst this gang controls both of the linked Rackets, any gang in the campaign may pay this gang to return a dead fighter from the grave. This costs the original value of the fighter (including equipment) +100 credits. Roll 2D6. On a roll of 7-12 the fighter is resurrected and gains the Fearsome skill. On a roll of 3-6 the fighter is resurrected but suffers a permanent loss of 1 Toughness and gains the Fearsome skill if they do not have it already. On a roll of 2, the resurrection fails.'
     }
   },
   {
@@ -361,10 +361,33 @@ const RACKETS = [
     },
     enhancedBoons: {
       income1: 'If the gang also controls one of the Linked Rackets, the gang gains 2D6x10 credits when they collect Income.',
-      special: 'Whilst this gang controls both of the linked Rackets, its Leader and all Champions gain a 4+ saving throw that cannot be modified by a weapon\'s Armour Piercing value.'
+      special: 'Whilst this gang controls both of the linked Rackets, its Leader and all Champions gain a 4+ saving throw that cannot be modified by a weapon Armour Piercing value.'
     }
   }
 ];
+
+// Unicode-safe encoding/decoding functions
+const encodeUnicodeBase64 = (str) => {
+  try {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => {
+      return String.fromCharCode(parseInt(p1, 16));
+    }));
+  } catch (error) {
+    console.error('Encoding error:', error);
+    throw new Error('Failed to encode data for sharing');
+  }
+};
+
+const decodeUnicodeBase64 = (str) => {
+  try {
+    return decodeURIComponent(Array.prototype.map.call(atob(str), (c) => {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+  } catch (error) {
+    console.error('Decoding error:', error);
+    throw new Error('Failed to decode shared data');
+  }
+};
 
 const NecromundaRacketApp = () => {
   const [numPlayers, setNumPlayers] = useState('');
@@ -383,7 +406,7 @@ const NecromundaRacketApp = () => {
     
     if (encodedData) {
       try {
-        const decodedData = JSON.parse(atob(encodedData));
+        const decodedData = JSON.parse(decodeUnicodeBase64(encodedData));
         setAssignments(decodedData.assignments || []);
         setNumPlayers(decodedData.numPlayers?.toString() || '');
         setRacketsPerPlayer(decodedData.racketsPerPlayer?.toString() || '2');
@@ -395,6 +418,7 @@ const NecromundaRacketApp = () => {
         setShareUrl(newShareUrl);
       } catch (error) {
         console.error('Failed to load shared results:', error);
+        alert('Failed to load shared data. The URL may be corrupted.');
       }
     }
   }, []);
@@ -403,7 +427,6 @@ const NecromundaRacketApp = () => {
     setNumPlayers(value);
     const count = parseInt(value) || 0;
     
-    // Initialize player names array - keep existing names if they exist, add empty strings for new slots
     const newNames = Array(count).fill('').map((_, i) => 
       playerNames[i] !== undefined ? playerNames[i] : ''
     );
@@ -428,7 +451,6 @@ const NecromundaRacketApp = () => {
       return { isValid: false, error: 'Please enter a valid number of rackets per player' };
     }
 
-    // Check for empty player names if names are being used
     if (showNameInput || playerNames.some(name => name !== '')) {
       const emptyNames = playerNames.some((name, index) => 
         index < playerCount && (!name || name.trim() === '')
@@ -458,16 +480,13 @@ const NecromundaRacketApp = () => {
     const racketsCount = parseInt(racketsPerPlayer);
     const effectiveNames = getEffectivePlayerNames();
     
-    // Create pool with refreshing logic
     let availableRackets = [...RACKETS];
     const newAssignments = [];
 
     for (let i = 0; i < playerCount; i++) {
       const playerRackets = [];
       
-      // Assign specified number of rackets per player
       for (let j = 0; j < racketsCount; j++) {
-        // Refresh pool if empty
         if (availableRackets.length === 0) {
           availableRackets = [...RACKETS];
         }
@@ -486,8 +505,6 @@ const NecromundaRacketApp = () => {
 
     setAssignments(newAssignments);
     setShowNameInput(false);
-    
-    // Generate shareable URL
     generateShareUrl(newAssignments, playerCount, racketsCount, effectiveNames);
   };
 
@@ -501,21 +518,18 @@ const NecromundaRacketApp = () => {
         timestamp: new Date().toISOString()
       };
       
-      const encodedData = btoa(JSON.stringify(shareData));
-      // Fix for Netlify deployment - use window.location.href instead of constructing URL
+      const encodedData = encodeUnicodeBase64(JSON.stringify(shareData));
       const baseUrl = window.location.href.split('?')[0];
       const newShareUrl = `${baseUrl}?data=${encodedData}`;
       
-      console.log('Generated share URL:', newShareUrl);
       setShareUrl(newShareUrl);
       
-      // Update browser URL without page reload
       if (window.history && window.history.pushState) {
         window.history.pushState({}, '', newShareUrl);
       }
     } catch (error) {
       console.error('Failed to generate share URL:', error);
-      alert('Failed to generate share URL. Please try again.');
+      alert('Failed to generate share URL: ' + error.message);
     }
   };
 
@@ -526,12 +540,10 @@ const NecromundaRacketApp = () => {
     }
     
     try {
-      // Try modern clipboard API first
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(shareUrl);
         alert('✅ Share URL copied to clipboard!');
       } else {
-        // Fallback for older browsers or non-HTTPS
         const textArea = document.createElement('textarea');
         textArea.value = shareUrl;
         textArea.style.position = 'fixed';
@@ -552,7 +564,6 @@ const NecromundaRacketApp = () => {
       }
     } catch (error) {
       console.error('Failed to copy URL:', error);
-      // Show the URL in a prompt as last resort
       prompt('Copy this share URL manually:', shareUrl);
     }
   };
@@ -566,7 +577,6 @@ const NecromundaRacketApp = () => {
     setShowNameInput(false);
     setShareUrl('');
     
-    // Clear URL parameters
     if (window.history && window.history.pushState) {
       window.history.pushState({}, '', window.location.pathname);
     }
@@ -585,7 +595,6 @@ const NecromundaRacketApp = () => {
     
     const dataStr = JSON.stringify(exportData, null, 2);
     const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-    
     const exportFileDefaultName = `necromunda-rackets-${new Date().toISOString().split('T')[0]}.json`;
     
     const linkElement = document.createElement('a');
