@@ -320,7 +320,7 @@ const NecromundaRacketApp = () => {
             <img 
               src="/necromunda-logo-large.png" 
               alt="Necromunda Logo" 
-              className="w-24 h-24 object-contain"
+              className="w-24 h-24 object-contain rounded-lg"
             />
           </div>
           
@@ -331,7 +331,7 @@ const NecromundaRacketApp = () => {
               <img 
                 src="/necromunda-logo-large.png" 
                 alt="Necromunda Logo" 
-                className="w-20 h-20 object-contain"
+                className="w-20 h-20 object-contain rounded-lg"
               />
             </div>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent mb-2">
