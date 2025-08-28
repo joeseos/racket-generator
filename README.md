@@ -1,6 +1,6 @@
 # Necromunda Racket Generator
 
-A web tool for randomly distributing rackets among players in the Necromunda tabletop game. Simplifies campaign setup by automatically assigning rackets from the official deck while avoiding duplicates. https://racketgenerator.netlify.app/
+A web tool for randomly distributing rackets among players in the Necromunda tabletop game. Simplifies campaign setup by automatically assigning rackets from the official deck while avoiding duplicates. https://racketgenerator.netlify.app
 
 ## Features
 
