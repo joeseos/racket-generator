@@ -692,10 +692,10 @@ const NecromundaRacketApp = () => {
               </button>
             </div>
             
-            <div className="btn-group">
+            <div className="flex items-end">
               <button
                 onClick={assignRackets}
-                className={`px-4 py-2 rounded-md font-medium transition-colors ${
+                className={`w-full px-4 py-2 rounded-md font-medium transition-colors ${
                   validateInputs().isValid 
                     ? 'bg-red-600 hover:bg-red-700 text-white' 
                     : 'bg-gray-500 cursor-not-allowed text-gray-300'
@@ -706,8 +706,9 @@ const NecromundaRacketApp = () => {
                 <Shuffle className="w-4 h-4 mr-2 inline" />
                 Assign Rackets
               </button>
+            </div>
               {assignments.length > 0 && (
-                <>
+                <div className="btn-group">
                   <button
                     onClick={resetAssignments}
                     className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition-colors inline-flex items-center gap-2 shadow-lg"
@@ -735,7 +736,7 @@ const NecromundaRacketApp = () => {
                     <Download className="w-4 h-4" />
                     Export
                   </button>
-                </>
+                </div>
               )}
             </div>
           </div>
