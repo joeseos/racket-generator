@@ -3,6 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "description": "Random racket assignment tool for Necromunda tabletop game",
+  "homepage": ".",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
