@@ -600,7 +600,7 @@ const NecromundaRacketApp = () => {
           <h1 className="text-4xl font-bold bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent mb-2">
             Necromunda Racket Assignment
           </h1>
-          <p className="text-gray-300 text-lg">Randomly distribute rackets among your gang leaders</p>
+          <p className="text-gray-300 text-lg">Randomly distribute rackets among your players</p>
         </div>
 
         {/* Input Section */}
