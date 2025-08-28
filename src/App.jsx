@@ -598,7 +598,7 @@ const NecromundaRacketApp = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent mb-2">
-            Necromunda Racket Assignment
+            Necromunda Racket Generator
           </h1>
           <p className="text-gray-300 text-lg">Randomly distribute rackets among your players</p>
         </div>
