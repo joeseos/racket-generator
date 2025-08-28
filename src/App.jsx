@@ -70,7 +70,7 @@ const RACKETS = [
       recruit: 'Whilst it controls this Racket, the gang may recruit two Hive Scum or one Bounty Hunter Hired Gun for free, including their equipment, prior to every battle.'
     },
     enhancedBoons: {
-      income1: 'If the gang also controls one of the Linked Rackets, the gang earns D6x10 credits when they collect Income.',
+      income1: 'If the gang also controls one of the Linked Rackets, the gang gains D6x10 credits when they collect Income.',
       special: 'If the gang also controls both of the Linked Rackets, all of its members gain the Fearsome skill.'
     }
   },
@@ -85,7 +85,7 @@ const RACKETS = [
       income: 'Whilst it controls this Racket, the gang treats Grapplehawks and Gyrinx Cats from the Black Market as Common.'
     },
     enhancedBoons: {
-      income1: 'If the gang also controls one of the Linked Rackets, the gang earns D6x10 credits when they collect Income.',
+      income1: 'If the gang also controls one of the Linked Rackets, the gang gains D6x10 credits when they collect Income.',
       special: 'If the gang also controls both of the Linked Rackets, the gang earns 2D6x10 credits when they collect Income.'
     }
   },
@@ -407,7 +407,22 @@ const NecromundaRacketApp = () => {
     if (encodedData) {
       try {
         const decodedData = JSON.parse(decodeUnicodeBase64(encodedData));
-        setAssignments(decodedData.assignments || []);
+        
+        // Reconstruct full assignments from compact data
+        const reconstructedAssignments = decodedData.assignments.map(assignment => {
+          // Handle both old format (with full rackets) and new format (with racketIds)
+          const rackets = assignment.racketIds 
+            ? assignment.racketIds.map(id => RACKETS.find(racket => racket.id === id)).filter(Boolean)
+            : assignment.rackets || [];
+            
+          return {
+            player: assignment.player,
+            name: assignment.name,
+            rackets: rackets
+          };
+        });
+        
+        setAssignments(reconstructedAssignments);
         setNumPlayers(decodedData.numPlayers?.toString() || '');
         setRacketsPerPlayer(decodedData.racketsPerPlayer?.toString() || '2');
         setPlayerNames(decodedData.playerNames || []);
@@ -510,8 +525,13 @@ const NecromundaRacketApp = () => {
 
   const generateShareUrl = (assignments, playerCount, racketsCount, effectiveNames) => {
     try {
+      // Create compact data structure with only racket IDs to reduce URL size
       const shareData = {
-        assignments: assignments,
+        assignments: assignments.map(assignment => ({
+          player: assignment.player,
+          name: assignment.name,
+          racketIds: assignment.rackets.map(racket => racket.id) // Only store IDs, not full objects
+        })),
         numPlayers: playerCount,
         racketsPerPlayer: racketsCount,
         playerNames: effectiveNames,
@@ -521,6 +541,11 @@ const NecromundaRacketApp = () => {
       const encodedData = encodeUnicodeBase64(JSON.stringify(shareData));
       const baseUrl = window.location.href.split('?')[0];
       const newShareUrl = `${baseUrl}?data=${encodedData}`;
+      
+      // Check URL length - warn if still too long
+      if (newShareUrl.length > 2000) {
+        console.warn('Share URL is still quite long:', newShareUrl.length, 'characters');
+      }
       
       setShareUrl(newShareUrl);
       
