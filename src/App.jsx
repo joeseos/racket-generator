@@ -793,7 +793,7 @@ const NecromundaRacketApp = () => {
         <div className="mt-8 text-center">
           <p className="text-xs text-gray-500 mb-3">Enjoying this tool? Consider supporting its development:</p>
           <a 
-            href="https://buymeacoffee.com/mundamanager" 
+            href="https://buymeacoffee.com/joesoes" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-block hover:opacity-80 transition-opacity"
